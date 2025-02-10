@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the base directory
-BASE_DIR="/Users/reishi/Lab/profile_app"
+BASE_DIR=$(pwd)/profile_app
 
 # Create the directory structure
 mkdir -p "$BASE_DIR/frontend"
