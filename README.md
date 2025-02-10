@@ -1,4 +1,4 @@
-# Docker\_compose
+# Docker_compose
 
 This repository contains a collection of small local projects designed to facilitate learning in system design using Docker Compose. Each project is encapsulated in a shell script, providing a hands-on approach to understanding various system components and their interactions.
 
@@ -13,55 +13,45 @@ This repository contains a collection of small local projects designed to facili
 
 The repository includes the following projects, each designed to help you learn specific aspects of system design, containerization, and microservices using Docker Compose.
 
-### **1. blog-app.sh**
+### **1. blog-app.sh**  
+   - **Tech Stack:** Docker, Nginx, PostgreSQL, Flask (Python)  
+   - **Learning Objectives:**  
+     - Setting up a full-stack web application with Docker Compose  
+     - Configuring Nginx as a reverse proxy  
+     - Connecting a backend service with a database in a containerized environment  
 
-- **Tech Stack:** Docker, Nginx, PostgreSQL, Flask (Python)
-- **Learning Objectives:**
-  - Setting up a full-stack web application with Docker Compose
-  - Configuring Nginx as a reverse proxy
-  - Connecting a backend service with a database in a containerized environment
+### **2. kafka-simulator.sh**  
+   - **Tech Stack:** Apache Kafka, Zookeeper, Docker  
+   - **Learning Objectives:**  
+     - Setting up a Kafka cluster using Docker Compose  
+     - Understanding how Kafka manages messaging between producers and consumers  
+     - Exploring real-time event streaming and message brokering  
 
-### **2. docker\_command.sh**
+### **3. profile_app.sh**  
+   - **Tech Stack:** Node.js, Express, MongoDB, Docker  
+   - **Learning Objectives:**  
+     - Building a microservices-based profile management application  
+     - Using MongoDB as a document-based NoSQL database  
+     - Handling API requests and managing user data in a containerized setup  
 
-- **Tech Stack:** Docker
-- **Learning Objectives:**
-  - Understanding common Docker commands
-  - Managing containers, images, volumes, and networks
-  - Learning best practices for running and troubleshooting Docker containers
+### **4. static_blog.sh**  
+   - **Tech Stack:** Nginx, Jekyll (or Hugo), Docker  
+   - **Learning Objectives:**  
+     - Hosting a static website with Nginx in a containerized environment  
+     - Automating static site generation using Jekyll or Hugo  
+     - Deploying lightweight websites using Docker  
 
-### **3. kafka-simulator.sh**
-
-- **Tech Stack:** Apache Kafka, Zookeeper, Docker
-- **Learning Objectives:**
-  - Setting up a Kafka cluster using Docker Compose
-  - Understanding how Kafka manages messaging between producers and consumers
-  - Exploring real-time event streaming and message brokering
-
-### **4. profile\_app.sh**
-
-- **Tech Stack:** Node.js, Express, MongoDB, Docker
-- **Learning Objectives:**
-  - Building a microservices-based profile management application
-  - Using MongoDB as a document-based NoSQL database
-  - Handling API requests and managing user data in a containerized setup
-
-### **5. static\_blog.sh**
-
-- **Tech Stack:** Nginx, Jekyll (or Hugo), Docker
-- **Learning Objectives:**
-  - Hosting a static website with Nginx in a containerized environment
-  - Automating static site generation using Jekyll or Hugo
-  - Deploying lightweight websites using Docker
-
-### **6. url-shortener.sh**
-
-- **Tech Stack:** Python (Flask), Redis, Docker
-- **Learning Objectives:**
-  - Building a simple URL shortener with Flask
-  - Using Redis as an in-memory database for quick lookups
-  - Understanding how microservices interact in a lightweight environment
+### **5. url-shortener.sh**  
+   - **Tech Stack:** Python (Flask), Redis, Docker  
+   - **Learning Objectives:**  
+     - Building a simple URL shortener with Flask  
+     - Using Redis as an in-memory database for quick lookups  
+     - Understanding how microservices interact in a lightweight environment  
 
 Each project provides hands-on experience in working with containerized applications, improving your understanding of system architecture, and deploying scalable services using Docker Compose.
+
+### **Docker Command Memo**  
+The `docker_command.sh` file is not a project but serves as a memo for using Docker to set up and clean up all projects efficiently. It includes common commands for managing containers, images, volumes, and networks.
 
 ## Getting Started
 
