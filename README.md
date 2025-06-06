@@ -40,6 +40,26 @@ Welcome to the Docker Compose System Design Learning Lab! This repository is des
 - Docker volume management
 - Port mapping (8080:80)
 
+**Architecture**:
+```
++----------------+     HTTP/HTTPS    +----------------+
+| Client Browser | <---------------> | Nginx Server   |
++----------------+    Port: 8080     +----------------+
+                                    | - nginx:1.21    |
+                                    | - worker_procs: 4|
+                                    +----------------+
+                                          |
+                                          | Serve Static Content
+                                          v
+                                  +----------------+
+                                  | Static Files   |
+                                  | - index.html   | (Main page)
+                                  | - about.html   | (About page)
+                                  | - style.css    | (Styling)
+                                  | Volume: /usr/share/nginx/html
+                                  +----------------+
+```
+
 **Learning Outcomes**:
 - Basic web server concepts
 - Static content serving
@@ -68,6 +88,35 @@ Welcome to the Docker Compose System Design Learning Lab! This repository is des
   - Mongo Express: 8081:8081
   - Portainer: 9000:9000
 
+**Architecture**:
+```
++----------------+     HTTP/HTTPS    +----------------+
+| Client Browser | <---------------> | Frontend       |
++----------------+    Port: 8080     | (http-server)  |
+                                    | - Node.js 16.x |
+                                    +----------------+
+                                          |
+                                          | REST API Calls
+                                          v
+                                  +----------------+
+                                  | Backend        |
+                                  | (Express.js)   |
+                                  | - Node.js 16.x |
+                                  | - Port: 3000   |
+                                  | - CRUD ops     |
+                                  +----------------+
+                                          |
+                    +---------------------+---------------------+
+                    |                     |                     |
+                    v                     v                     v
+            +-------------+      +----------------+      +-------------+
+            | MongoDB     |      | Mongo Express  |      | Portainer   |
+            | (Database)  |      | (DB Admin UI)  |      | (Monitoring)|
+            | Port: 27017|      | Port: 8081     |      | Port: 9000  |
+            | v4.4.x     |      | v0.54.0        |      | v2.9.3      |
+            +-------------+      +----------------+      +-------------+
+```
+
 **Learning Outcomes**:
 - Full-stack development
 - REST API design
@@ -94,6 +143,35 @@ Welcome to the Docker Compose System Design Learning Lab! This repository is des
   - Backend: 3000:3000
   - MongoDB: 27017:27017
   - Mongo Express: 8081:8081
+
+**Architecture**:
+```
++----------------+  Real-time Updates  +----------------+
+| Client Browser | <-----------------> | Frontend       |
++----------------+    Port: 8085      | (http-server)  |
+                                      | - Node.js 16.x |
+                                      +----------------+
+                                              |
+                                              | REST API Calls
+                                              v
+                                      +----------------+
+                                      | Backend        |
+                                      | (Express.js)   |
+                                      | - Node.js 16.x |
+                                      | - Port: 3000   |
+                                      | - Profile CRUD |
+                                      +----------------+
+                                              |
+                    +-------------------------+-------------------------+
+                    |                         |                         |
+                    v                         v                         v
+            +-------------+          +----------------+          +-------------+
+            | MongoDB     |          | Mongo Express  |          | Validation  |
+            | (Database)  |          | (DB Admin UI)  |          | Service     |
+            | Port: 27017|          | Port: 8081     |          | Port: 3001  |
+            | v4.4.x     |          | v0.54.0        |          | (JWT Auth)  |
+            +-------------+          +----------------+          +-------------+
+```
 
 **Learning Outcomes**:
 - Real-time form updates
@@ -128,6 +206,35 @@ Welcome to the Docker Compose System Design Learning Lab! This repository is des
   - Redis Commander: 8081:8081
   - pgAdmin: 8080:80
 
+**Architecture**:
+```
++----------------+     HTTP/HTTPS    +----------------+
+| Client Browser | <---------------> | Backend        |
++----------------+    Port: 8000     | (FastAPI)      |
+                                    | - Python 3.9+  |
+                                    | - Port: 8000   |
+                                    | - URL Shortener|
+                                    +----------------+
+                                          |
+                    +---------------------+---------------------+
+                    |                     |                     |
+                    v                     v                     v
+            +-------------+      +----------------+      +-------------+
+            | Redis Cache |      | PostgreSQL     |      | Prometheus  |
+            | (URL Cache) |      | (URL Storage)  |      | (Metrics)   |
+            | Port: 6379  |      | Port: 5432     |      | Port: 9090  |
+            | v6.2.x      |      | v13.x          |      | v2.30.x     |
+            +-------------+      +----------------+      +-------------+
+                    |                     |                     |
+                    v                     v                     v
+            +-------------+      +----------------+      +-------------+
+            | Redis       |      | pgAdmin       |      | Grafana     |
+            | Commander   |      | (DB Admin UI) |      | (Dashboard) |
+            | Port: 8081  |      | Port: 8080    |      | Port: 3000  |
+            | v1.8.0      |      | v6.0          |      | v8.2.x      |
+            +-------------+      +----------------+      +-------------+
+```
+
 **Learning Outcomes**:
 - FastAPI development
 - Redis caching strategies
@@ -155,6 +262,37 @@ Welcome to the Docker Compose System Design Learning Lab! This repository is des
 - Port mappings:
   - Zookeeper: 2181:2181
   - Kafka: 9092:9092
+
+**Architecture**:
+```
++----------------+  Publish Orders  +----------------+
+| Order Producer | ---------------> | Kafka Broker   |
++----------------+                  | (Message Queue)|
+| - Python 3.9+  |                  | - Port: 9092   |
+| - Port: 9092   |                  | - v2.8.x       |
++----------------+                  +----------------+
+                                          |
+                    +---------------------+---------------------+
+                    |                     |                     |
+                    v                     v                     v
+            +-------------+      +----------------+      +-------------+
+            | Order       |      | Order         |      | Notification|
+            | Validator   |      | Fulfiller     |      | Service     |
+            | (Validate)  |      | (Process)     |      | (Notify)    |
+            | - Python    |      | - Python      |      | - Python    |
+            | - Port: 3002|      | - Port: 3003  |      | - Port: 3004|
+            +-------------+      +----------------+      +-------------+
+                    ^                     ^                     ^
+                    |                     |                     |
+                    +---------------------+---------------------+
+                                          |
+                                  +----------------+
+                                  | Zookeeper      |
+                                  | (Kafka Manager)|
+                                  | - Port: 2181   |
+                                  | - v3.7.x       |
+                                  +----------------+
+```
 
 **Learning Outcomes**:
 - Kafka message queuing
