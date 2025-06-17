@@ -8,7 +8,6 @@ Welcome to the Docker Compose System Design Learning Lab! This repository is des
 2. **Database Integration** → Blog App (Relational database)
 3. **NoSQL & Microservices** → Profile App (Document database)
 4. **Caching & Performance** → URL Shortener (In-memory database)
-5. **Event-Driven Architecture** → Kafka Simulator (Message broker)
 
 ## 📚 System Design Fundamentals
 
@@ -19,7 +18,6 @@ Welcome to the Docker Compose System Design Learning Lab! This repository is des
 - **Consistency**: CAP theorem in practice
 - **Load Balancing**: Using Nginx as reverse proxy
 - **Caching**: Redis for performance optimization
-- **Message Queues**: Event-driven architecture with Kafka
 - **Database Types**: SQL vs NoSQL in practice
 - **Microservices**: Service decomposition and communication
 
@@ -243,64 +241,6 @@ Welcome to the Docker Compose System Design Learning Lab! This repository is des
 - Docker Compose health checks
 - Logging best practices
 
-### 5. Kafka Simulator (kafka-simulator.sh)
-**Purpose**: Real-time order processing system with Kafka.
-
-**Key Features**:
-- Kafka producer for order generation
-- Multiple consumer groups:
-  - Order validation
-  - Order fulfillment
-  - Notifications
-- Zookeeper for Kafka management
-- Topic partitioning (3 partitions)
-
-**Technical Details**:
-- Kafka cluster setup
-- Python-based producer and consumers
-- Topic configuration
-- Port mappings:
-  - Zookeeper: 2181:2181
-  - Kafka: 9092:9092
-
-**Architecture**:
-```
-+----------------+  Publish Orders  +----------------+
-| Order Producer | ---------------> | Kafka Broker   |
-+----------------+                  | (Message Queue)|
-| - Python 3.9+  |                  | - Port: 9092   |
-| - Port: 9092   |                  | - v2.8.x       |
-+----------------+                  +----------------+
-                                          |
-                    +---------------------+---------------------+
-                    |                     |                     |
-                    v                     v                     v
-            +-------------+      +----------------+      +-------------+
-            | Order       |      | Order         |      | Notification|
-            | Validator   |      | Fulfiller     |      | Service     |
-            | (Validate)  |      | (Process)     |      | (Notify)    |
-            | - Python    |      | - Python      |      | - Python    |
-            | - Port: 3002|      | - Port: 3003  |      | - Port: 3004|
-            +-------------+      +----------------+      +-------------+
-                    ^                     ^                     ^
-                    |                     |                     |
-                    +---------------------+---------------------+
-                                          |
-                                  +----------------+
-                                  | Zookeeper      |
-                                  | (Kafka Manager)|
-                                  | - Port: 2181   |
-                                  | - v3.7.x       |
-                                  +----------------+
-```
-
-**Learning Outcomes**:
-- Kafka message queuing
-- Consumer groups
-- Topic partitioning
-- Event-driven architecture
-- Docker Compose service orchestration
-
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -454,43 +394,6 @@ docker-compose down
 - Monitoring setup: Check Prometheus targets
 - Grafana dashboards: Verify data source configuration
 
-#### 5. Kafka Simulator Deployment
-```bash
-# Clone the repository
-git clone <repository-url>
-cd Docker_compose
-
-# Make the script executable and run it
-chmod +x kafka-simulator.sh
-./kafka-simulator.sh
-
-# The script will:
-# - Create necessary directories
-# - Generate producer and consumer code
-# - Set up Kafka and Zookeeper configurations
-# - Create Docker Compose file
-# - Start all services
-
-# Verify services
-# Check Kafka topic
-docker-compose exec kafka kafka-topics --list --bootstrap-server localhost:9092
-
-# Monitor consumer groups
-docker-compose exec kafka kafka-consumer-groups --bootstrap-server localhost:9092 --list
-
-# Check logs
-docker-compose logs -f [service-name]
-
-# Stop all services
-docker-compose down
-```
-
-**Troubleshooting**:
-- Kafka connection: Check Zookeeper logs
-- Topic creation: Verify topic exists
-- Consumer issues: Check consumer group status
-- Producer errors: Monitor producer logs
-
 ### Common Deployment Issues
 
 1. **Port Conflicts**
@@ -596,11 +499,6 @@ docker network inspect [network_name]
    - Implement url-shortener.sh
    - Master caching strategies
    - Understand performance optimization
-
-5. **System Design Mastery**
-   - Deploy kafka-simulator.sh
-   - Learn event-driven architecture
-   - Understand distributed systems
 
 ## 🤝 Contributing
 
