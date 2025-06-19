@@ -249,12 +249,33 @@ Welcome to the Docker Compose System Design Learning Lab! This repository is des
 - Git (for cloning the repository)
 - Basic understanding of Docker concepts
 
+### Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/toasobi-lab/Docker_compose.git
+cd Docker_compose
+
+# Choose a project to start with (recommended order):
+# 1. Static Blog (beginner)
+chmod +x static_blog.sh && ./static_blog.sh
+
+# 2. Blog App (intermediate)
+chmod +x blog-app.sh && ./blog-app.sh
+
+# 3. Profile App (advanced)
+chmod +x profile_app.sh && ./profile_app.sh
+
+# 4. URL Shortener (expert)
+chmod +x url-shortener.sh && ./url-shortener.sh
+```
+
 ### Deployment Instructions
 
 #### 1. Static Blog Deployment
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/toasobi-lab/Docker_compose.git
 cd Docker_compose
 
 # Make the script executable and run it
@@ -286,7 +307,7 @@ docker-compose down
 #### 2. Blog App Deployment
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/toasobi-lab/Docker_compose.git
 cd Docker_compose
 
 # Make the script executable and run it
@@ -322,7 +343,7 @@ docker-compose down
 #### 3. Profile App Deployment
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/toasobi-lab/Docker_compose.git
 cd Docker_compose
 
 # Make the script executable and run it
@@ -356,7 +377,7 @@ docker-compose down
 #### 4. URL Shortener Deployment
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/toasobi-lab/Docker_compose.git
 cd Docker_compose
 
 # Make the script executable and run it
@@ -500,17 +521,111 @@ docker network inspect [network_name]
    - Master caching strategies
    - Understand performance optimization
 
+## 🛠️ Project Structure
+
+```
+Docker_compose/
+├── README.md                 # This file
+├── static_blog.sh           # Static blog deployment script
+├── blog-app.sh              # Blog app deployment script
+├── profile_app.sh           # Profile app deployment script
+├── url-shortener.sh         # URL shortener deployment script
+└── docker_command.sh        # Common Docker commands reference
+```
+
+## 🎓 Learning Objectives
+
+By completing all projects in this lab, you will gain hands-on experience with:
+
+- **Container Orchestration**: Docker Compose for multi-service applications
+- **Web Technologies**: HTML, CSS, JavaScript, Node.js, Python FastAPI
+- **Databases**: MongoDB (NoSQL) and PostgreSQL (SQL)
+- **Caching**: Redis for performance optimization
+- **Monitoring**: Prometheus and Grafana for observability
+- **Load Balancing**: Nginx as reverse proxy
+- **Microservices**: Service decomposition and communication patterns
+- **DevOps Practices**: Containerization, orchestration, and monitoring
+
 ## 🤝 Contributing
 
-Feel free to contribute to this learning resource by:
-- Adding new projects
-- Improving documentation
-- Fixing bugs
-- Adding more system design patterns
+We welcome contributions to improve this learning resource! Here's how you can help:
+
+### Ways to Contribute
+
+- **Add New Projects**: Create new system design patterns and architectures
+- **Improve Documentation**: Enhance README, add tutorials, or fix typos
+- **Bug Fixes**: Report and fix issues in existing projects
+- **Feature Requests**: Suggest new features or improvements
+- **Code Reviews**: Review pull requests and provide feedback
+
+### Contributing Guidelines
+
+1. **Fork the Repository**: Create your own fork of the project
+2. **Create a Feature Branch**: Make your changes in a new branch
+3. **Follow Coding Standards**: Maintain consistent code style and documentation
+4. **Test Your Changes**: Ensure all scripts work correctly
+5. **Submit a Pull Request**: Describe your changes clearly
+
+### Development Setup
+
+```bash
+# Fork and clone the repository
+git clone https://github.com/YOUR_USERNAME/Docker_compose.git
+cd Docker_compose
+
+# Create a new branch for your feature
+git checkout -b feature/your-feature-name
+
+# Make your changes and test them
+# ...
+
+# Commit and push your changes
+git add .
+git commit -m "Add: description of your changes"
+git push origin feature/your-feature-name
+```
 
 ## 📚 Additional Resources
 
+### Official Documentation
 - [Docker Documentation](https://docs.docker.com/)
-- [System Design Primer](https://github.com/donnemartin/system-design-primer)
 - [Docker Compose Documentation](https://docs.docker.com/compose/)
+- [Nginx Documentation](https://nginx.org/en/docs/)
+- [MongoDB Documentation](https://docs.mongodb.com/)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Redis Documentation](https://redis.io/documentation)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+
+### Learning Resources
+- [System Design Primer](https://github.com/donnemartin/system-design-primer)
+- [Docker Best Practices](https://docs.docker.com/develop/dev-best-practices/)
+- [Microservices Patterns](https://microservices.io/patterns/)
+- [CAP Theorem Explained](https://en.wikipedia.org/wiki/CAP_theorem)
+
+### Community & Support
+- [Docker Community](https://www.docker.com/community/)
+- [Stack Overflow - Docker](https://stackoverflow.com/questions/tagged/docker)
+- [GitHub Discussions](https://github.com/toasobi-lab/Docker_compose/discussions)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Thanks to the Docker community for excellent tooling
+- Inspired by various system design resources and tutorials
+- Built for educational purposes to help developers learn system design concepts
+
+## 📞 Contact
+
+- **Repository**: [https://github.com/toasobi-lab/Docker_compose](https://github.com/toasobi-lab/Docker_compose)
+- **Issues**: [GitHub Issues](https://github.com/toasobi-lab/Docker_compose/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/toasobi-lab/Docker_compose/discussions)
+
+---
+
+**Happy Learning! 🚀**
+
+*This repository is designed to help you master system design concepts through practical, hands-on experience with Docker Compose. Start with the static blog and work your way up to the advanced URL shortener project.*
 
